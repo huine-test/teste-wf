@@ -10,7 +10,7 @@ on:
     branches: [ master ]
 
 jobs:
-  flake8:
+  flake8-test:
 
     runs-on: ubuntu-latest
 
