@@ -36,20 +36,25 @@ jobs:
 
     - name: Lint with flake8
       id: flake8
+      continue-on-error: true
       run: |
         # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
-  send-email:
-    needs: flake8-test
-    if: always()
+    - name: check
+      if: ${{ steps.flake8.outcome }}
+      run: exit 1
 
-    runs-on: ubuntu-latest
+  # send-email:
+  #   needs: flake8-test
+  #   if: always()
 
-    steps:
-    - name: E-mail
-      run: |
-        echo 'flake8 status -> ${{ needs.flake8-test.result }}'
-        echo 'flake8 outputs -> ${{ toJSON(needs.flake8-test) }}'
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #   - name: E-mail
+  #     run: |
+  #       echo 'flake8 status -> ${{ needs.flake8-test.result }}'
+  #       echo 'flake8 outputs -> ${{ toJSON(needs.flake8-test) }}'
