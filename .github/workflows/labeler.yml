@@ -1,0 +1,62 @@
+Assine-bem-model:
+  - AssinaturaDigital/*
+
+Assine-bem-portal:
+  - ZSistemaAssinatura/*
+
+AssineNet:
+  ZAssineBem/*
+
+Monitoramento:
+  - any: ['Monitor/*', 'NagiosScripts/*']
+
+RedesSociais:
+  - RedesSociais/*
+
+WhatsApp:
+  - WhatsApp/*
+
+PortalNube:
+  - ZPortal/*
+
+SMS:
+  - ZSms/*
+
+Moodle:
+  - any: ['moodle_custom/*', 'EAD/*']
+
+Scripts:
+  - Scripts/*
+
+Sistema-de-arquivos:
+  - any: ['ZSda/*', 'SistemaDeArquivos/*', 'FileSystem/*']
+
+Encurtador:
+  - any: ['ZUrl/*', 'EncurtadorUrl/*']
+
+Owncloud:
+  - owncloud_custom/*
+
+NubeApp:
+  - NubeApp/*
+
+Calendario:
+  - ZCalendario/*
+
+ZSeguros:
+  - ZSeguros/*
+
+Build:
+  - release-build/*
+
+TotalIp:
+  - TotalIp/*
+
+ZNube:
+  - ZNube/*
+
+Media:
+  - media/*
+
+Outros:
+  - any: ['Push/*', 'admin/*']
