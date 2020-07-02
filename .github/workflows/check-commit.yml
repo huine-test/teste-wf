@@ -50,7 +50,7 @@ jobs:
         echo subject Push: commit $(git log --max-count=1 | grep commit), por ${{ github.actor }} Falhou!
         echo "" >> email
         echo "Link para a run:" >> email
-        echo "https://github.com/${{ github.repository }}/runs/${{ github.run_id }}" >> email
+        echo "https://github.com/${{ github.repository }}/runs/${{ github.run_number }}" >> email
         echo "" >> email
         echo "Falha no Flake8" >> email
         echo "<pre>"
