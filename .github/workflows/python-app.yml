@@ -45,8 +45,9 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
     - name: E-mail
-      env:
-        FAIL: ${{ failure() }}
       run: |
         echo 'flake8 status -> ${{ steps.flake8.outcome }}'
-        echo $FAIL
+
+    - name:
+      if: ${{ failure() }}
+      run: echo FAIL
