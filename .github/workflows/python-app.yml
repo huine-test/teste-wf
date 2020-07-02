@@ -39,6 +39,9 @@ jobs:
     - name: Lint with flake8
       id: flake8
       continue-on-error: true
+      outputs:
+        out:
+          description: "Output do flake8"
       run: |
         # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --show-source --statistics
