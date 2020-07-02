@@ -52,4 +52,4 @@ jobs:
     - name: E-mail
       run: |
         echo 'flake8 status -> ${{ needs.flake8-test.result }}'
-        echo 'flake8 outputs -> ${{ needs.flake8-test.outputs }}'
+        echo 'flake8 outputs -> ${{ toJSON(needs.flake8-test) }}'
