@@ -41,16 +41,24 @@ jobs:
       continue-on-error: true
       run: |
         # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --show-source --statistics > flake-output.txt
+        flake8 . --count --show-source --statistics > flake-output
 
     - name: E-mail
+      if: ${{ steps.flake8.outcome == 'failure' }}
       run: |
-        echo 'flake8 status -> ${{ needs.flake8-test.result }}'
-        echo 'flake8 outputs -> ${{ toJSON(needs.flake8-test) }}'
-        echo 'user workflow -> ${{ github.actor }}'
         echo 'email devs -> ' $email_devs
-        echo 'commit -> ' $(git log --max-count=1 | grep commit)
+        echo subject Push: commit $(git log --max-count=1 | grep commit), por ${{ github.actor }} Falhou!
+        echo "" >> email
+        echo "Link para a run:" >> email
+        echo "https://github.com/${{ github.repository }}/runs/${{ github.run_id }}" >> email
+        echo "" >> email
+        echo "Falha no Flake8" >> email
+        echo "<pre>"
+        $(cat flake-output) >> email
+        echo "</pre>"
+        echo "" >> email
+        cat email
 
     - name: check
-      if: ${{ steps.flake8.outcome }}
+      if: ${{ steps.flake8.outcome == 'failure' }}
       run: exit 1
