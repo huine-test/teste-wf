@@ -48,8 +48,8 @@ jobs:
         echo 'flake8 status -> ${{ needs.flake8-test.result }}'
         echo 'flake8 outputs -> ${{ toJSON(needs.flake8-test) }}'
         echo 'user workflow -> ${{ github.actor }}'
-        echo 'email devs -> $email_devs'
-        echo 'commit -> $(git log --max-count=1 | grep commit)'
+        echo 'email devs -> ' $email_devs
+        echo 'commit -> ' $(git log --max-count=1 | grep commit)
 
     - name: check
       if: ${{ steps.flake8.outcome }}
