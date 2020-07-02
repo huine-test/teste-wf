@@ -2,9 +2,9 @@
 class AutomataFunction(object):
     """."""
 
-    def __init__(self, QTY_EST, states, initial, adjacency, finals):
+    def __init__(self, qty_est, states, initial, adjacency, finals):
         """."""
-        self.qty_est = QTY_EST
+        self.qty_est = qty_est
         self.states = states
         self.initial = initial
         self.adjacency = adjacency
@@ -12,7 +12,7 @@ class AutomataFunction(object):
 
     def _indent(self, text, level=1):
         """."""
-        text = text.replace('<sp>', '    ' * level)
+        text = text.replace('<sp>', '    ' * level )
         text = text.replace('<spp>', '    ' * (level + 1))
         return text
 
