@@ -54,10 +54,10 @@ jobs:
         echo "" >> email
         echo "Falha no Flake8" >> email
         echo "<pre>"
-        $(cat flake-output) >> email
+        echo $(cat flake-output) >> email
         echo "</pre>"
         echo "" >> email
-        cat email
+        echo $(cat email)
 
     - name: check
       if: ${{ steps.flake8.outcome == 'failure' }}
