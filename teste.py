@@ -2,7 +2,7 @@
 class AutomataFunction(object):
     """."""
 
-    def __init__(self, qty_est, states, initial, adjacency, finals):
+    def __init__(self, QTY_EST, states, initial, adjacency, finals):
         """."""
         self.qty_est = qty_est
         self.states = states
