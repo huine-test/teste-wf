@@ -43,13 +43,13 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
   send-email:
-    # needs: flake8-test
+    needs: flake8-test
+    if: always()
 
     runs-on: ubuntu-latest
 
     steps:
     - name: E-mail
       run: |
-        echo ${{ toJSON( jobs.flake8-test )}}
         echo 'flake8 status -> ${{ needs.flake8-test.result }}'
         echo 'flake8 outputs -> ${{ needs.flake8-test.outputs }}'
