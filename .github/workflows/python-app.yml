@@ -48,6 +48,6 @@ jobs:
     - name: E-mail
       run: |
         echo flake8 output
-        echo ${{ steps.flake8.outputs }}
+        echo ${{ toJson(steps.flake8.outputs) }}
         echo flake8 status
         echo ${{ steps.flake8.outcome }}
