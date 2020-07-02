@@ -13,6 +13,8 @@ jobs:
   flake8-test:
 
     runs-on: ubuntu-latest
+    env:
+      email_devs: 'gabriel.gisoldo@softrh.com.br'
 
     steps:
     - uses: actions/checkout@v2
@@ -39,22 +41,16 @@ jobs:
       continue-on-error: true
       run: |
         # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        flake8 . --count --show-source --statistics > flake-output.txt
+
+    - name: E-mail
+      run: |
+        echo 'flake8 status -> ${{ needs.flake8-test.result }}'
+        echo 'flake8 outputs -> ${{ toJSON(needs.flake8-test) }}'
+        echo 'user workflow -> ${{ github.actor }}'
+        echo 'email devs -> $email_devs'
+        echo 'commit -> $(git log --max-count=1 | grep commit)'
 
     - name: check
       if: ${{ steps.flake8.outcome }}
       run: exit 1
-
-  # send-email:
-  #   needs: flake8-test
-  #   if: always()
-
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #   - name: E-mail
-  #     run: |
-  #       echo 'flake8 status -> ${{ needs.flake8-test.result }}'
-  #       echo 'flake8 outputs -> ${{ toJSON(needs.flake8-test) }}'
