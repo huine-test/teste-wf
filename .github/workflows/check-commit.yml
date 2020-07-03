@@ -37,8 +37,6 @@ jobs:
     - name: Flake8 lint
       id: flake8
       run: |
-        echo Commit:
         git log --max-count=1
         echo
-        echo Por: ${{ github.actor }}
         flake8 . --count --show-source --statistics
