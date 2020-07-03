@@ -12,8 +12,8 @@ class AutomataFunction(object):
 
     def _indent(self, text, level=1):
         """."""
-        text = text.replace('<sp>', '    ' * level )
-        text = text.replace('<spp>', '    ' * (level + 1))
+        text = text.replace('<sp>', '    ' * level)
+        text = text.replace('<spp>', '    ' * (level + 1) )
         return text
 
     def _make_if(self, array, level=1):
