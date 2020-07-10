@@ -53,8 +53,9 @@ jobs:
       run: |
         find . -name "*.js" >> temp
         find . -name "*.css" >> temp
-        find ~ -name yuicompressor
-        for file in $( grep -P '.+(?<!\.min)\.(js|css)' temp ); do ~/node_modules/yuicompressor/nodejs/cli.js "$file" -o "$file";done
+        pwd
+        find . -name yuicompressor
+        for file in $( grep -P '.+(?<!\.min)\.(js|css)' temp ); do /home/runner/work/teste-wf/teste-wf/node_modules/.bin/yuicompressor "$file" -o "$file";done
         rm temp
 
     - name: build Package
