@@ -44,6 +44,8 @@ jobs:
       run: |
         tar cvzf build.tar.gz  ./*
         echo ${{ github.ref }}
+        echo ${{ github.sha }}
+        
 
     # - name: Create Release
     #   id: create_release
