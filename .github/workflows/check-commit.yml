@@ -53,6 +53,7 @@ jobs:
       run: |
         find . -name "*.js" >> temp
         find . -name "*.css" >> temp
+        find ~ -name yuicompressor
         for file in $( grep -P '.+(?<!\.min)\.(js|css)' temp ); do ~/node_modules/yuicompressor/nodejs/cli.js "$file" -o "$file";done
         rm temp
 
