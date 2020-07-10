@@ -41,7 +41,7 @@ jobs:
 
     - name: Install YUICompressor
       id: yui
-      run: npm install yuicompressor -g
+      run: npm install yuicompressor
 
     - name: Flake8 Lint
       id: flake8
@@ -53,7 +53,7 @@ jobs:
       run: |
         find . -name "*.js" >> temp
         find . -name "*.css" >> temp
-        for file in $( grep -P '.+(?<!\.min)\.(js|css)' temp ); do yuicompressor "$file" -o "$file";done
+        for file in $( grep -P '.+(?<!\.min)\.(js|css)' temp ); do ~/node_modules/yuicompressor/nodejs/cli.js "$file" -o "$file";done
         rm temp
 
     - name: build Package
