@@ -42,6 +42,9 @@ jobs:
       run: |
         flake8 . --count --show-source --statistics
 
+    - name: Minify JS & CSS
+      uses: nizarmah/auto-minify@master
+
     - name: build Package
       id: build
       run: |
