@@ -46,7 +46,7 @@ jobs:
       id: build
       run: |
         tar cvzf build.tar.gz  ./*
-        echo ::set-output name=sha_short::$(git rev-parse --short=4 ${{ github.sha }})
+        echo ::set-output name=sha_short::$(git rev-parse --short=6 ${{ github.sha }})
         echo ::set-output name=release_body::$(git log -1 --pretty=%B)
         
     - name: Create Release
