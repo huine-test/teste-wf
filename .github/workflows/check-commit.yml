@@ -44,6 +44,8 @@ jobs:
 
     - name: Minify JS & CSS
       uses: nizarmah/auto-minify@master
+      whit:
+        directory: .
 
     - name: build Package
       id: build
