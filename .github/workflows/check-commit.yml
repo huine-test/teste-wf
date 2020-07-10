@@ -28,15 +28,34 @@ jobs:
       with:
         python-version: 2.7
 
-    - name: Install dependencies
+    - name: Install Dependencies
       id: setup-dependencies
       run: |
         python -m pip install --upgrade pip
         pip install flake8
 
-    - name: Flake8 lint
+    - name: Flake8 Lint
       id: flake8
       run: |
-        git log --max-count=1
-        echo
         flake8 . --count --show-source --statistics
+
+    - name: build Package
+      id: build
+      run: |
+        tar cvzf build.tar.gz  ./*
+        echo ${{ github.ref }}
+
+    # - name: Create Release
+    #   id: create_release
+    #   uses: actions/create-release@v1
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #   with:
+    #     tag_name: ${{ github.ref }}
+    #     release_name: Release ${{ github.ref }}
+    #     body: |
+    #       Changes in this Release
+    #       - First Change
+    #       - Second Change
+    #     draft: false
+    #     prerelease: false
