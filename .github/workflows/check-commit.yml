@@ -55,9 +55,9 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ steps.vars.outputs.sha_short }}
-        release_name: Release ${{ steps.vars.outputs.sha_short }}
-        body: ${{ steps.vars.outputs.release_body }}
+        tag_name: ${{ steps.build.outputs.sha_short }}
+        release_name: Release ${{ steps.build.outputs.sha_short }}
+        body: ${{ steps.build.outputs.release_body }}
         draft: false
         prerelease: false
 
