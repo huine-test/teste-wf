@@ -9,6 +9,9 @@ on:
   pull_request:
     branches: [ master ]
 
+env:
+  SHORTSHA: $(git rev-parse --short=4 ${{ github.sha }})
+
 jobs:
   flake8-test:
 
@@ -43,7 +46,6 @@ jobs:
       id: build
       run: |
         tar cvzf build.tar.gz  ./*
-        git log -1 --pretty=%B > body.txt
         
     - name: Create Release
       id: create_release
@@ -51,9 +53,9 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.sha }}
-        release_name: Release ${{ github.sha }}
-        body_path: ./body.txt
+        tag_name: $SHORTSHA
+        release_name: Release $SHORTSHA
+        body: $(git log -1 --pretty=%B)
         draft: false
         prerelease: false
 
