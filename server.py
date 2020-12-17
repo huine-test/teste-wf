@@ -9,7 +9,8 @@ app = Flask(__name__)
 @app.route('/', methods=["POST", "GET"])
 def webhook():
     """."""
-    app.logger.debug(os.environ)
+    app.logger.debug(os.environ.get('GITHUB_SECRET', None))
+    return 'Successfully', 200
     # if request.method == 'POST':
     #     if verify_signature(request):
     #         # make something
@@ -29,4 +30,3 @@ def verify_signature(req):
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port, debug=True, )
-
