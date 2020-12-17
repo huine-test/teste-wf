@@ -18,6 +18,7 @@ def webhook():
 
 
 def verify_signature(req):
+    """."""
     received_sign = req.headers.get(
         'X-Hub-Signature-256').split('sha256=')[-1].strip()
     secret = os.environ.get('GITHUB_SECRET').encode()
@@ -27,5 +28,5 @@ def verify_signature(req):
 
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))
+    port = int(os.environ.get("PORT", 9000))
     app.run(host='0.0.0.0', port=port, debug=True)
