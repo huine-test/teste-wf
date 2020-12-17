@@ -1,52 +1,52 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-# name: Flake8
+name: Flake8
 
-# on:
-#   push:
-#     branches: [ master ]
-#   pull_request:
-#     branches: [ master ]
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
-# env:
-#   SHORTSHA: $(git rev-parse --short=4 ${{ github.sha }})
+env:
+  SHORTSHA: $(git rev-parse --short=4 ${{ github.sha }})
 
-# jobs:
-#   flake8-test:
+jobs:
+  flake8-test:
 
-#     runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-#     steps:
-#     - uses: actions/checkout@v2
-#     - uses: actions/cache@v2
-#       with:
-#         path: |
-#           ~/.cache/pip
-#           ~/.npm
-#         key: ${{ runner.os }}-cachefile-
-#         restore-keys: ${{ runner.os }}-cachefile-
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      with:
+        path: |
+          ~/.cache/pip
+          ~/.npm
+        key: ${{ runner.os }}-cachefile-
+        restore-keys: ${{ runner.os }}-cachefile-
 
-#     - name: Setup Python 2.7
-#       id: setup-python
-#       uses: actions/setup-python@v2
-#       with:
-#         python-version: 2.7
+    - name: Setup Python 2.7
+      id: setup-python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 2.7
 
-#     - name: Install Dependencies
-#       id: setup-dependencies
-#       run: |
-#         python -m pip install --upgrade pip
-#         pip install flake8
+    - name: Install Dependencies
+      id: setup-dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8
 
 #     - name: Install YUICompressor
 #       id: yui
 #       run: npm install yuicompressor
 
-#     - name: Flake8 Lint
-#       id: flake8
-#       run: |
-#         flake8 . --count --show-source --statistics
+    - name: Flake8 Lint
+      id: flake8
+      run: |
+        flake8 . --count --show-source --statistics
 
 #     - name: Minify CSS & JS
 #       id: minify
